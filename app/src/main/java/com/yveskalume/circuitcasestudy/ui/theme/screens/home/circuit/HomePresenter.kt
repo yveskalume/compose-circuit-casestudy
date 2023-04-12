@@ -31,6 +31,10 @@ fun HomePresenter(navigator: Navigator): HomeState {
         mutableStateOf(null)
     }
 
+    var isLoading by remember {
+        mutableStateOf(false)
+    }
+
     var fruits: List<Fruit> by remember {
         mutableStateOf(emptyList())
     }
@@ -38,11 +42,14 @@ fun HomePresenter(navigator: Navigator): HomeState {
     LaunchedEffect(Unit) {
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             coroutineScope.launch(Dispatchers.IO) {
+                isLoading = true
                 AppDatabase.fruitDao(context).getAll()
                     .catch {
+                        isLoading = false
                         error = it
                     }
                     .collect {
+                        isLoading = false
                         error = null
                         fruits = it
                     }
@@ -55,6 +62,7 @@ fun HomePresenter(navigator: Navigator): HomeState {
             HomeEvent.AddNewFruit -> {
                 navigator.goTo(AddFruit)
             }
+
             is HomeEvent.DeleteFruit -> {
                 coroutineScope.launch(Dispatchers.IO) {
                     AppDatabase.fruitDao(context).delete(fruit = event.fruit)
@@ -64,7 +72,7 @@ fun HomePresenter(navigator: Navigator): HomeState {
     }
 
     return when {
-        fruits.isEmpty() && error == null -> {
+        isLoading -> {
             HomeState.Loading(onEvent = eventSink)
         }
 

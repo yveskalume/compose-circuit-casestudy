@@ -63,6 +63,9 @@ fun HomeScreen(state: HomeState) {
                 }
 
                 is HomeState.Success -> {
+                    if (state.fruits.isEmpty()) {
+                        Text(text = "No fruit", fontSize = 24.sp)
+                    }
                     LazyColumn(
                         modifier = Modifier
                             .fillMaxSize()
