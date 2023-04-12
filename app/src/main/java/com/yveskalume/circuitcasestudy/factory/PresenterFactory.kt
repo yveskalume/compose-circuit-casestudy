@@ -17,8 +17,8 @@ class PresenterFactory() : Presenter.Factory {
         context: CircuitContext
     ): Presenter<*>? {
         return when (screen) {
-            is Home -> presenterOf { HomePresenter() }
-            is AddFruit -> presenterOf { AddFruitPresenter() }
+            is Home -> presenterOf { HomePresenter(navigator) }
+            is AddFruit -> presenterOf { AddFruitPresenter(navigator) }
             else -> null
         }
     }

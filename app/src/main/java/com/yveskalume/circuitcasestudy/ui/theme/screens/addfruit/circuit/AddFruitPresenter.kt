@@ -7,12 +7,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import com.slack.circuit.runtime.Navigator
 import com.yveskalume.circuitcasestudy.data.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun AddFruitPresenter(): AddFruitState {
+fun AddFruitPresenter(navigator: Navigator): AddFruitState {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
 
@@ -22,7 +23,9 @@ fun AddFruitPresenter(): AddFruitState {
 
     val eventSink: (AddFruitEvent) -> Unit = { event ->
         when (event) {
-            AddFruitEvent.NavigateBack -> {}
+            AddFruitEvent.NavigateBack -> {
+                navigator.pop()
+            }
             is AddFruitEvent.SaveFruit -> {
                 coroutineScope.launch(Dispatchers.IO) {
                     isLoading = true

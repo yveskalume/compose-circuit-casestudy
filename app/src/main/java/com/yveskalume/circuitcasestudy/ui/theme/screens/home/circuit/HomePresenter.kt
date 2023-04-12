@@ -11,14 +11,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
+import com.slack.circuit.runtime.Navigator
 import com.yveskalume.circuitcasestudy.data.AppDatabase
 import com.yveskalume.circuitcasestudy.data.Fruit
+import com.yveskalume.circuitcasestudy.ui.theme.screens.addfruit.AddFruit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomePresenter(): HomeState {
+fun HomePresenter(navigator: Navigator): HomeState {
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -50,7 +52,9 @@ fun HomePresenter(): HomeState {
 
     val eventSink: (HomeEvent) -> Unit = { event ->
         when (event) {
-            HomeEvent.AddNewFruit -> {}
+            HomeEvent.AddNewFruit -> {
+                navigator.goTo(AddFruit)
+            }
             is HomeEvent.DeleteFruit -> {
                 coroutineScope.launch(Dispatchers.IO) {
                     AppDatabase.fruitDao(context).delete(fruit = event.fruit)
