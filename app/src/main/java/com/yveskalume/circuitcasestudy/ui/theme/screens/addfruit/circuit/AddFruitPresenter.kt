@@ -10,6 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.slack.circuit.runtime.Navigator
 import com.yveskalume.circuitcasestudy.data.AppDatabase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
@@ -29,8 +30,10 @@ fun AddFruitPresenter(navigator: Navigator): AddFruitState {
             is AddFruitEvent.SaveFruit -> {
                 coroutineScope.launch(Dispatchers.IO) {
                     isLoading = true
+                    delay(2000) // simulate loading
                     AppDatabase.fruitDao(context).insert(event.fruit)
                     isLoading = false
+                    navigator.pop()
                 }
             }
         }

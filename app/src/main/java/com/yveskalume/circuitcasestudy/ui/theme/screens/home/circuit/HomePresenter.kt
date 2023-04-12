@@ -16,6 +16,7 @@ import com.yveskalume.circuitcasestudy.data.AppDatabase
 import com.yveskalume.circuitcasestudy.data.Fruit
 import com.yveskalume.circuitcasestudy.ui.theme.screens.addfruit.AddFruit
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
@@ -42,6 +43,7 @@ fun HomePresenter(navigator: Navigator): HomeState {
     LaunchedEffect(Unit) {
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             coroutineScope.launch(Dispatchers.IO) {
+                delay(2000) // simulate loading
                 isLoading = true
                 AppDatabase.fruitDao(context).getAll()
                     .catch {
