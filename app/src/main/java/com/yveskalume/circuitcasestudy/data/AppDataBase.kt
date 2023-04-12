@@ -9,18 +9,20 @@ import androidx.room.RoomDatabase
 abstract class AppDatabase : RoomDatabase() {
     abstract fun fruitDao(): FruitDao
 
-    @Volatile
-    private var instance: AppDatabase? = null
+    companion object {
+        @Volatile
+        private var instance: AppDatabase? = null
+        fun fruitDao(context: Context) = getInstance(context).fruitDao()
+        fun getInstance(context: Context): AppDatabase {
+            return instance ?: synchronized(this) {
+                val dbInstance = Room.databaseBuilder(
+                    context,
+                    AppDatabase::class.java, "cicuit"
+                ).build()
 
-    fun getInstance(context: Context): AppDatabase {
-        return instance ?: synchronized(this) {
-            val dbInstance = Room.databaseBuilder(
-                context,
-                AppDatabase::class.java, "cicuit"
-            ).build()
-
-            instance = dbInstance
-            return instance as AppDatabase
+                instance = dbInstance
+                return instance as AppDatabase
+            }
         }
     }
 }

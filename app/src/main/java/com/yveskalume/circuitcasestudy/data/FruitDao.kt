@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface FruitDao {
 
     @Insert
-    fun insert(fruit: Fruit)
+    suspend fun insert(fruit: Fruit)
 
     @Query("SELECT * FROM fruit")
     fun getAll() : Flow<List<Fruit>>
