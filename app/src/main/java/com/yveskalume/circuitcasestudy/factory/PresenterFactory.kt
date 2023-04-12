@@ -6,7 +6,7 @@ import com.slack.circuit.runtime.Screen
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.presenter.presenterOf
 import com.yveskalume.circuitcasestudy.ui.theme.screens.home.Home
-import com.yveskalume.circuitcasestudy.ui.theme.screens.home.logic.HomePresenter
+import com.yveskalume.circuitcasestudy.ui.theme.screens.home.circuit.HomePresenter
 
 class PresenterFactory() : Presenter.Factory {
     override fun create(

@@ -1,4 +1,4 @@
-package com.yveskalume.circuitcasestudy.ui.theme.screens.home.logic
+package com.yveskalume.circuitcasestudy.ui.theme.screens.home.circuit
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

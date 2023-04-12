@@ -1,4 +1,4 @@
-package com.yveskalume.circuitcasestudy.ui.theme.screens.home.logic
+package com.yveskalume.circuitcasestudy.ui.theme.screens.home.circuit
 
 import com.slack.circuit.runtime.CircuitUiState
 import com.yveskalume.circuitcasestudy.data.Fruit

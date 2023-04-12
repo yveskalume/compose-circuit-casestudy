@@ -6,7 +6,7 @@ import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
 import com.yveskalume.circuitcasestudy.ui.theme.screens.home.Home
 import com.yveskalume.circuitcasestudy.ui.theme.screens.home.HomeScreen
-import com.yveskalume.circuitcasestudy.ui.theme.screens.home.logic.HomeState
+import com.yveskalume.circuitcasestudy.ui.theme.screens.home.circuit.HomeState
 
 class ScreenFactory() : Ui.Factory {
     override fun create(screen: Screen, context: CircuitContext): Ui<*>? {

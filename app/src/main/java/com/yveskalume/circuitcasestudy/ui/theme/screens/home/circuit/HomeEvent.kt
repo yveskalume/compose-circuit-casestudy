@@ -1,4 +1,4 @@
-package com.yveskalume.circuitcasestudy.ui.theme.screens.home.logic
+package com.yveskalume.circuitcasestudy.ui.theme.screens.home.circuit
 
 sealed interface HomeEvent {
     object AddNewFruit : HomeEvent

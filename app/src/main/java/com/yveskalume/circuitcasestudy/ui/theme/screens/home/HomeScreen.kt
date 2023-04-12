@@ -25,8 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.slack.circuit.runtime.Screen
-import com.yveskalume.circuitcasestudy.ui.theme.screens.home.logic.HomeEvent
-import com.yveskalume.circuitcasestudy.ui.theme.screens.home.logic.HomeState
+import com.yveskalume.circuitcasestudy.ui.theme.screens.home.circuit.HomeEvent
+import com.yveskalume.circuitcasestudy.ui.theme.screens.home.circuit.HomeState
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
