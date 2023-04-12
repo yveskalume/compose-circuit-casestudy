@@ -35,7 +35,7 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
-ksp = { id = "com.google.devtools.ksp", version = "1.8.10-1.0.9" }
+ksp = { id = "com.google.devtools.ksp", version = "1.8.0-1.0.8" }
 
 [bundles]
 
