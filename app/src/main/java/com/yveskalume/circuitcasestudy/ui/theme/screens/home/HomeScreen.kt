@@ -43,7 +43,7 @@ fun HomeScreen(state: HomeState) {
             ExtendedFloatingActionButton(
                 text = { Text(text = "Add") },
                 icon = { Icon(imageVector = Icons.Outlined.Add, contentDescription = null) },
-                onClick = { /*TODO*/ }
+                onClick = { eventSink(HomeEvent.AddNewFruit) }
             )
         }
     ) { contentPadding ->
