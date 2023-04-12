@@ -6,14 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.CircuitConfig
 import com.slack.circuit.foundation.CircuitContent
 import com.yveskalume.circuitcasestudy.ui.theme.CircuitCaseStudyTheme
+import com.yveskalume.circuitcasestudy.ui.theme.screens.home.Home
+import com.yveskalume.circuitcasestudy.ui.theme.screens.home.logic.HomePresenterFactory
+import com.yveskalume.circuitcasestudy.ui.theme.screens.home.HomeScreenUiFactory
 
 class MainActivity : ComponentActivity() {
 
