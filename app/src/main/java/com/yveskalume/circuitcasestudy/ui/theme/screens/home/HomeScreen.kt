@@ -68,7 +68,7 @@ fun HomeScreen(state: HomeState) {
                             .fillMaxSize()
                             .padding(contentPadding)
                     ) {
-                        items(items = state.fruits, key = { it.id }) {
+                        items(items = state.fruits, key = { it.id!! }) {
                             Card(modifier = Modifier.fillMaxWidth()) {
                                 Row(
                                     modifier = Modifier.padding(4.dp),
@@ -76,7 +76,7 @@ fun HomeScreen(state: HomeState) {
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     Text(text = it.name, fontSize = 18.sp)
-                                    IconButton(onClick = { eventSink(HomeEvent.DeleteFruit) }) {
+                                    IconButton(onClick = { eventSink(HomeEvent.DeleteFruit(it)) }) {
                                         Icon(
                                             imageVector = Icons.Rounded.Delete,
                                             contentDescription = null

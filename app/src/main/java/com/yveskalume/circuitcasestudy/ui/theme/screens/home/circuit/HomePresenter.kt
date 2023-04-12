@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -14,12 +15,15 @@ import com.yveskalume.circuitcasestudy.data.AppDatabase
 import com.yveskalume.circuitcasestudy.data.Fruit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 
 @Composable
 fun HomePresenter(): HomeState {
+
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
+
+    val coroutineScope = rememberCoroutineScope()
 
     var error: Throwable? by remember {
         mutableStateOf(null)
@@ -31,7 +35,7 @@ fun HomePresenter(): HomeState {
 
     LaunchedEffect(Unit) {
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            withContext(Dispatchers.IO) {
+            coroutineScope.launch(Dispatchers.IO) {
                 AppDatabase.fruitDao(context).getAll()
                     .catch {
                         error = it
@@ -47,7 +51,11 @@ fun HomePresenter(): HomeState {
     val eventSink: (HomeEvent) -> Unit = { event ->
         when (event) {
             HomeEvent.AddNewFruit -> {}
-            HomeEvent.DeleteFruit -> {}
+            is HomeEvent.DeleteFruit -> {
+                coroutineScope.launch(Dispatchers.IO) {
+                    AppDatabase.fruitDao(context).delete(fruit = event.fruit)
+                }
+            }
         }
     }
 

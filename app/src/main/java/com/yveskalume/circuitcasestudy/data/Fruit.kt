@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class Fruit(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int? = null,
     val name: String,
 )
